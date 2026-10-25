@@ -1,0 +1,18 @@
+# Python environments and cache
+.venv/
+__pycache__/
+*.py[cod]
+.streamlit/
+
+# Local uploads and generated artefacts
+uploads/
+test_images/
+*.keras
+*.h5
+*.tflite
+
+# System and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
