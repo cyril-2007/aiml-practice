@@ -99,3 +99,23 @@ Observe whether the predictions are correct and whether the confidence warning a
 - Evaluate the model on a larger, separate test dataset.
 - Test different lighting conditions, backgrounds, and image quality.
 - Improve the model using more training data and suitable model architectures.
+## Model Evaluation
+
+The saved CNN model was evaluated on 4,652 images from the validation split of the Cats vs Dogs dataset.
+
+| Metric | Result |
+|---|---:|
+| Validation accuracy | 83.75% |
+| Precision (Dog class) | 83.92% |
+| Recall (Dog class) | 84.27% |
+| F1-score (Dog class) | 84.10% |
+| Images evaluated | 4,652 |
+
+### Confusion Matrix
+
+| Actual class | Predicted Cat | Predicted Dog |
+|---|---:|---:|
+| Cat | 1,897 | 383 |
+| Dog | 373 | 1,999 |
+
+The model correctly classified 3,896 of the 4,652 validation images. These results measure performance on the validation split, not on an independent final test dataset. Performance may vary on images from different sources or conditions.
