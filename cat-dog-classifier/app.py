@@ -108,6 +108,7 @@ else:
 
 
             
+            
             left_column, right_column = st.columns(2)
 
             with left_column:
@@ -118,14 +119,11 @@ else:
                 st.metric("🐶 Dog score", f"{dog_score:.1%}")
                 st.progress(dog_score)
 
-
-
             st.caption(
-                st.caption(
-    "The scores are model estimates, not calibrated probabilities. "
-    "Unfamiliar images may still receive high scores."
-)
+                "The scores are model estimates, not calibrated probabilities. "
+                "Unfamiliar images may still receive high scores."
             )
+
     except (UnidentifiedImageError, OSError) as error:
         st.error(f"That file could not be read as an image: {error}")
     except FileNotFoundError as error:
