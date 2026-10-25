@@ -74,13 +74,17 @@ else:
             model = load_model()
             label, cat_score, dog_score = predict_image(model, prepared_image)
 
+            
             st.subheader(f"Prediction: {label}")
-            st.write("The model assigned the higher output score to this class.")
+
+            confidence = max(cat_score, dog_score)
+            st.metric("Prediction confidence", f"{confidence:.1%}")
 
             left_column, right_column = st.columns(2)
             left_column.metric("Cat score", f"{cat_score:.1%}")
             right_column.metric("Dog score", f"{dog_score:.1%}")
-            st.progress(int(max(cat_score, dog_score) * 100))
+            st.progress(int(confidence * 100))
+
 
             st.caption(
                 "Scores show the model's sigmoid output, not a calibrated measure of certainty. "
