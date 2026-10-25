@@ -1,3 +1,21 @@
+# Cat vs Dog Image Classifier
+
+A Convolutional Neural Network (CNN) project that classifies uploaded images as cats or dogs using a trained deep learning model.
+
+## 🚀 Live Demo
+
+**Try the website here:** [Cat vs Dog CNN Classifier](https://aiml-practice-ck23udc7nuv57n2fdmgmec.streamlit.app/)
+
+Upload a cat or dog image and view the model's prediction.
+
+## 🛠️ Technologies Used
+
+- Python
+- TensorFlow and Keras
+- Streamlit
+- NumPy
+- Pillow
+
 # Cat vs Dog CNN Classifier
 
 A beginner-friendly web app for the CNN trained in `train_model.py`. It uses the saved `cat_dog_model.keras` model to classify an uploaded photo as a cat or dog.
