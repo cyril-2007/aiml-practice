@@ -8,6 +8,7 @@ __pycache__/
 uploads/
 test_images/
 *.keras
+!cat_dog_mobilenet.keras
 *.h5
 *.tflite
 
