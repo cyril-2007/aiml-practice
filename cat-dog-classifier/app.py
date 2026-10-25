@@ -101,6 +101,18 @@ else:
                 st.title(label)
                 st.metric("Prediction confidence", f"{confidence:.1%}")
 
+                if confidence < 0.70:
+                    st.warning(
+                        "Low-confidence prediction. The model may be unsure "
+                        "which class fits this image."
+                    )
+
+                st.info(
+                    "This model is designed for cats and dogs. "
+                    "It may misclassify unrelated images, even with a high score."
+                )
+
+
                 st.caption(
                     "This is the model's highest output score, "
                     "not a guarantee that the prediction is correct."

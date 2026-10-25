@@ -61,3 +61,41 @@ These preprocessing steps match `predict.py` and `train_model.py`. A score is th
 ## Git note
 
 The project `.gitignore` excludes `.venv`, model files, test images, and generated upload folders. Keep `app.py`, `requirements.txt`, `README.md`, and your training/prediction scripts in Git; store large trained models separately (for example, in a release or model-storage service) if you later publish the project.
+## Testing and Sample Results
+
+I tested the Cat vs Dog CNN Classifier using three sample images.
+
+| Test image | Model prediction | Model score | Result |
+|---|---|---:|---|
+| Cat photo (`my_pet.jpeg`) | Cat | 99.2% | Correct |
+| Dog photo (`dog1.jpeg`) | Dog | 99.4% | Correct |
+| Unrelated personal photo | Dog | 68.4% | Incorrect / unrelated image |
+
+These are results from only three sample tests. They do not represent the model's overall accuracy.
+
+## Robustness Testing
+
+To test the classifier, try the following types of images:
+
+1. A clear photo of a cat.
+2. A clear photo of a dog.
+3. An image containing neither a cat nor a dog.
+4. A blurry or low-quality image.
+5. An image containing multiple animals.
+
+Observe whether the predictions are correct and whether the confidence warning appears.
+
+## Limitations
+
+- The model is designed to classify images into only two classes: Cat or Dog.
+- It may classify unrelated images as either a cat or a dog.
+- A high model score does not guarantee a correct prediction.
+- The confidence score is not a calibrated probability.
+- The low-confidence warning is a basic threshold-based warning, not a reliable unrelated-image detector.
+
+## Future Improvements
+
+- Add a method to detect images that do not contain cats or dogs.
+- Evaluate the model on a larger, separate test dataset.
+- Test different lighting conditions, backgrounds, and image quality.
+- Improve the model using more training data and suitable model architectures.
