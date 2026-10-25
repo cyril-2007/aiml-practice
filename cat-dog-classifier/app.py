@@ -113,7 +113,7 @@ else:
         st.image(
             display_image,
             caption=f"Uploaded image: {uploaded_file.name}",
-            width="stretch",,
+            width="stretch",
         )
 
         if st.button("Classify image", type="primary"):
