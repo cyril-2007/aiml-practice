@@ -44,17 +44,34 @@ def predict_image(model, image: Image.Image) -> tuple[str, float, float]:
 
 st.set_page_config(page_title="Cat vs Dog Classifier", page_icon="🐾", layout="centered")
 
+
 st.title("🐾 Cat vs Dog Classifier")
-st.write("Upload a photo and let your trained CNN choose between **cat** and **dog**.")
-st.caption("This is a learning project. The result is the model's best guess, not a guarantee.")
+st.markdown(
+    "### AI-powered image recognition\n"
+    "Upload a clear photo of a cat or dog and let your trained CNN classify it."
+)
+st.caption(
+    "A beginner-friendly deep learning project. Predictions are model estimates, "
+    "not guarantees of correctness."
+)
+
+with st.expander("🔍 How does this classifier work?"):
+    st.markdown(
+        """
+        1. **Upload:** Choose a JPG or PNG image.
+        2. **Preprocess:** The image is converted to RGB and resized to 128 × 128 pixels.
+        3. **Normalize:** Pixel values are scaled from 0–255 to 0–1.
+        4. **Predict:** The trained convolutional neural network (CNN) produces a score.
+        5. **Display:** The app shows the predicted class and both Cat and Dog scores.
+
+        **Important:** A high score does not guarantee that a prediction is correct.
+        """
+    )
 
 with st.sidebar:
-    st.header("How it works")
-    st.write(
-        "The app converts your photo to RGB, resizes it to 128 × 128 pixels, "
-        "and scales pixel values from 0–255 to 0–1 before prediction."
-    )
-    st.info("For best results, use a clear photo with one visible cat or dog.")
+    st.header("Tips for best results")
+    st.info("Use a clear photo with one visible cat or dog.")
+    st.write("Supported formats: JPG, JPEG, and PNG.")
 
 uploaded_file = st.file_uploader(
     "Choose an image", type=["jpg", "jpeg", "png"], help="JPG and PNG images are supported."
@@ -75,20 +92,39 @@ else:
             label, cat_score, dog_score = predict_image(model, prepared_image)
 
             
-            st.subheader(f"Prediction: {label}")
-
+            
             confidence = max(cat_score, dog_score)
-            st.metric("Prediction confidence", f"{confidence:.1%}")
 
+            st.divider()
+            with st.container(border=True):
+                st.subheader("🔎 Classification result")
+                st.title(label)
+                st.metric("Prediction confidence", f"{confidence:.1%}")
+
+                st.caption(
+                    "This is the model's highest output score, "
+                    "not a guarantee that the prediction is correct."
+                )
+
+
+            
             left_column, right_column = st.columns(2)
-            left_column.metric("Cat score", f"{cat_score:.1%}")
-            right_column.metric("Dog score", f"{dog_score:.1%}")
-            st.progress(int(confidence * 100))
+
+            with left_column:
+                st.metric("🐱 Cat score", f"{cat_score:.1%}")
+                st.progress(cat_score)
+
+            with right_column:
+                st.metric("🐶 Dog score", f"{dog_score:.1%}")
+                st.progress(dog_score)
+
 
 
             st.caption(
-                "Scores show the model's sigmoid output, not a calibrated measure of certainty. "
-                "Images unlike the training data can still receive a high score."
+                st.caption(
+    "The scores are model estimates, not calibrated probabilities. "
+    "Unfamiliar images may still receive high scores."
+)
             )
     except (UnidentifiedImageError, OSError) as error:
         st.error(f"That file could not be read as an image: {error}")
